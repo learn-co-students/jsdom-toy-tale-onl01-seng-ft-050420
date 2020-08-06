@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <title>Toy Tale</title>
-    <script type="text/javascript" src="src/index.js"></script>
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
@@ -14,8 +13,8 @@
       />
     </div>
 
-    <div class="container">
-      <form class="add-toy-form">
+    <div class="container d-none">
+      <form class="add-toy-form" action="#" method="POST">
         <h3>Create a toy!</h3>
 
         <input
@@ -43,9 +42,10 @@
       </form>
     </div>
     <p style="text-align:center">
-      Andy needs your help! <button id="new-toy-btn">Add a new toy!</button>
+      Andy needs your help! <button id="new-toy-btn" onclick="toggleFormContainer()">Add a new toy!</button>
     </p>
 
     <div id="toy-collection"></div>
+    <script defer type="text/javascript" src="src/index.js"></script>
   </body>
 </html>
