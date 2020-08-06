@@ -60,7 +60,6 @@ button:hover {
   padding: 1rem;
   width: stretch;
   height: auto;
-  display: none;
   background: #515DA2;
   opacity: .8;
 }
@@ -96,4 +95,8 @@ button:hover {
   font-size: 18px;
   font-family: monospace;
   margin: 3px;
+}
+
+.d-none {
+  display: none;
 }
