@@ -3,6 +3,10 @@ body {
   font-family: monospace;
 }
 
+.d-none{
+  display:none;
+}
+
 #toy-header {
   display: flex;
   justify-content: center;
@@ -60,7 +64,6 @@ button:hover {
   padding: 1rem;
   width: stretch;
   height: auto;
-  display: none;
   background: #515DA2;
   opacity: .8;
 }
