@@ -30,7 +30,7 @@ function fetchToys() {
 function renderToys(toys) {
   const collection = document.querySelector('#toy-collection')
   toys.forEach((toy) => {
-    //uggghhhhh
+    //I could probably just make a big interpolated string to make this nicer, but wanted to play with createElement and dot notation
     const card = document.createElement('div')
     card.className = 'card'
     const h2 = document.createElement('h2')
