@@ -80,6 +80,7 @@ function makeCard(toy) {
   card.append(cardTitle, cardImg, cardLikeCount, cardLikeBtn)
   toyCollection.appendChild(card)
   cardLikeBtn.addEventListener('click', likeToy)
+  
 }
 
 function likeToy(e) {
