@@ -53,7 +53,7 @@ toyForm.addEventListener('submit', e => {
   document.querySelectorAll(".like-btn").forEach (button => {
     button.addEventListener("click", e => {
       e.preventDefault();
-      let newlikes = likes + 1
+      let newLikes = likes + 1
       button.parentElement.children[2].innerText++
       fetch(`http://localhost:3000/toys/${button.parentElement}`, {
         method: "PATCH",
