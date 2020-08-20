@@ -55,26 +55,8 @@ fetch("http://localhost:3000/toys")
   .then(function(resp){ 
     return resp.json()})
   .then(function(json){
-    json.forEach(toy => toyDiv.innerHTML += `<div class="card"><h2>${toy.name}</h2>
-    <img src=${toy.image}/>
-    <p>${toy.likes}</p>
-    <button class="like-btn">Like <3</button></div>`)
-  })
-
-// fetch("http://localhost:3000/toys", {
-//   method: "POST",
-//   headers: 
-//     {
-//       "Content-Type": "application/json",
-//       Accept: "application/json"
-//     }
-   
-//     body: JSON.stringify({
-//       "name": "Jessie",
-//       "image": "https://vignette.wikia.nocookie.net/p__/images/8/88/Jessie_Toy_Story_3.png/revision/latest?cb=20161023024601&path-prefix=protagonist",
-//       "likes": 0
-//     })
-//   });  
+    json.forEach(createToy)
+  }) 
   
 function likeToy(e){
   const likeButtons = document.querySelectorAll(".like-btn")
@@ -98,4 +80,47 @@ function likeToy(e){
       "likes": likes 
     })
   })
+}
+
+function editToy(e){
+  let editButton = e.target 
+  console.log('edit')
+  if (editButton.innerText === "Edit") {
+    editButton.innerText = "Save"
+    // toyName.innerHTML = `<input type="text" value="${toyName.innerText}">`
+  } else {
+    editButton.innerText  = "Edit"
+    toyName.innerHTML = `<input type="text" value="${toyName.innerText}">`
+  }
+
+  
+
+  
+}
+
+function createToy(toy){
+  toyDiv.innerHTML += `<div id="${toy.id}" class="card"><h2>${toy.name}</h2>
+  <img class="toy-avatar" src="${toy.image}"/>
+  <p>${toy.likes}</p></div>`
+
+  let likeButton = document.createElement("button")
+  likeButton.classList.add("like-btn")
+  likeButton.innerText = "Like <3"
+  
+  let idDiv = document.getElementById(`${toy.id}`)
+  idDiv.appendChild(likeButton)
+
+  // likeButton.addEventListener("click",likeToy)
+
+  let editButton = document.createElement("button")
+  editButton.classList.add("edit-btn")
+  editButton.innerText = "Edit"
+
+  editButton.addEventListener('click', editToy)
+  
+  idDiv.appendChild(editButton)
+  idDiv.addEventListener('click', function(){
+    console.log('hello')
+  })
+
 }
