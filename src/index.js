@@ -49,8 +49,32 @@ function renderToyDivCards(json) {
     likeButton.addEventListener('click', addLike);
     toyCardDiv.appendChild(likeButton);
     toyCollection.appendChild(toyCardDiv)
+    const editButton = document.createElement('button');
+    editButton.setAttribute('id', `edit-${toy.id}`)
+    editButton.innerText = "edit";
+    toyCardDiv.appendChild(editButton);
+    editButton.addEventListener('click', clickEditButton);
   }) 
 }
+
+function clickEditButton(event) {
+  let button = event.target
+    if (button.innerText === "edit") {
+      const h2 = event.target.parentElement.querySelector('h2')
+      const toyName = event.target.parentElement.querySelector('h2').innerText
+      button.innerText = "save"
+      h2.innerHTML = `<input type='text' value='${toyName}' id='toy-name'>`
+
+    } else {
+      //change button to say edit.
+      //grab the input value.
+      //change the innerHTML of our 'h2' to be the new input value (name).
+      //make a patch request to the backend to update the database and the DOM.
+    }
+  debugger
+}
+
+
 function fetchToys() {
   return fetch(toysurl)
     .then((resp) => { 
