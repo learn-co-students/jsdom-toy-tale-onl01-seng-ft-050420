@@ -5,6 +5,7 @@ const toysurl = "http://localhost:3000/toys";
 // })
 const addLike = function(event) {
   event.preventDefault()
+  debugger
   let likedToy = document.getElementById(event.target.id);
   let previousLikes = parseInt(likedToy.querySelector("span").innerText); // this isn't reading a number as in shouwing up as nill
   let updatedLikes = previousLikes + 1; // why is this not a number
@@ -60,25 +61,6 @@ function fetchToys() {
     // }) 
     .then(renderToyDivCards)
 }
-
-
-
-document.addEventListener("DOMContentLoaded", ()=>{
-  const addToyForm = document.querySelector('#addtoyform')
-  addToyForm.addEventListener('submit', function (event) {
-    submitData(event.name, event.image)
-  })
-})
-
-
-function submitData(name, image) {
-  let formData = {
-    name: name,
-    image: image,
-    likes: 0
-  };
-
-
 document.addEventListener("DOMContentLoaded", () => {
   fetchToys()
   const addBtn = document.querySelector("#new-toy-btn");
@@ -93,6 +75,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-
-
