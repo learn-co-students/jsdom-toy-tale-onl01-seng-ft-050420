@@ -24,15 +24,51 @@ fetch('http://localhost:3000/toys')
   .then(toys => {
     toys.forEach(toy => {
       toyCollection.innerHTML +=
-        `<div class="card">
+        `<div data-id="${toy.id}" class="card">
           <h2>${toy.name}</h2>
           <img src=${toy.image} class="toy-avatar">
           <p>${toy.likes}</p>
           <button class="like-btn"> Like <3</button>
+          <button class="edit-btn"> Edit </button>
         </div>`
     })
+    const editButtons = toyCollection.querySelectorAll('.edit-btn')
+    editButtons.forEach( button => {
+      button.addEventListener( 'click', editButtonClick );
+    })
+    likeButtonListeners()
 });
 
+function editButtonClick(e) {
+  console.log("Button was clicked.")
+  const header = e.target.parentElement.querySelector('h2')
+  if (e.target.innerText === "Edit") {
+    e.target.innerText = "Save";
+    header.innerHTML = `<input type='text' value='${header.innerText}'>`
+  } else {
+    e.target.innerText = "Edit"
+    header.innerHTML = header.firstChild.value
+    // debugger
+    updateToyName(header.innerText, header.parentElement.dataset.id);
+  }
+};
+
+function updateToyName(name, id) {
+
+  const config = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }, 
+    body: JSON.stringify({
+      name
+    })
+  }
+
+  fetch(`http://localhost:3000/toys/${id}`, config)
+
+}
 
 
 toyForm.addEventListener('submit', e => {
@@ -52,23 +88,27 @@ toyForm.addEventListener('submit', e => {
   })
 });
 
-document.querySelectorAll(".like-btn").forEach (button => {
-  button.addEventListener("click", e => {
-    e.preventDefault();
-    debugger
-    button.parentElement.children[2].innerText++
-    fetch(`http://localhost:3000/toys/${button.parentElement}`, {
-      method: "PATCH",
+
+function likeButtonListeners() {
+  document.querySelectorAll(".like-btn").forEach (button => {
+    button.addEventListener("click", e => {
+      // debugger
+      button.parentElement.children[2].innerText++
+      fetch(`http://localhost:3000/toys/${button.parentElement.dataset.id}`, {
+        method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         "Accept": "applciation/json"
       },
       body: JSON.stringify({
-        likes: e.target.likes++
+        likes: button.parentElement.children[2].innerText
       })
     })
   })
 })
+}
+
+
 
 
 
