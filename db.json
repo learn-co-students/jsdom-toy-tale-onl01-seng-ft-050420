@@ -47,6 +47,18 @@
       "name": "Little Green Men",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Alien-PNG-File.png",
       "likes": -2
+    },
+    {
+      "name": "Risotto",
+      "image": "https://www.freeiconspng.com/uploads/slinky-png-transparent-1.png",
+      "likes": 0,
+      "id": 28
+    },
+    {
+      "name": "Woody's Bro",
+      "image": "http://www.pngmart.com/files/3/Toy-Story-Woody-PNG-Photos.png",
+      "likes": 0,
+      "id": 31
     }
   ]
 }
